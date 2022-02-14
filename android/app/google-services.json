@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "968676266955",
+    "project_id": "e-study-management",
+    "storage_bucket": "e-study-management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968676266955:android:bd60b034c584be2f951c4e",
+        "android_client_info": {
+          "package_name": "com.example.e_study_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968676266955-1cdkokf6srljqbpt9n1b3qe7l3cerro9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_study_management",
+            "certificate_hash": "7f32457bb20e4dc9e5a0b3469f94d0044c12553c"
+          }
+        },
+        {
+          "client_id": "968676266955-cs5q34eru5jg1brtc7gq443i5pmuu3k0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQuKYxP5uEGLAt5bucmzZuX8sFvnQtiA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968676266955-cs5q34eru5jg1brtc7gq443i5pmuu3k0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "968676266955-s6bbfkh9gbnq4293ub2p8ik6pbigb5cm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eStudyManagement"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

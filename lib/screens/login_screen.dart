@@ -1,7 +1,5 @@
 import 'package:e_study_management/screens/registration_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:e_study_management/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -30,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     // email field
     final emailField = TextFormField(
-      autofocus: false,
+      autofocus: true,
       controller: emailController,
       keyboardType: TextInputType.emailAddress,
       // validator
@@ -38,13 +36,9 @@ class _LoginScreenState extends State<LoginScreen> {
         emailController.text = value!;
       },
       validator: (value) {
-        if (value!.isEmpty){
+        if (value!.isEmpty) {
           return ("Please enter your email");
         }
-        // RegExp for Email Text Validation - not necessary but useful
-        // if(!RegExp("^a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value )){
-        //   return ("Please enter a valid email");
-        // }
         return null;
       },
       textInputAction: TextInputAction.next,
@@ -66,12 +60,13 @@ class _LoginScreenState extends State<LoginScreen> {
       onSaved: (value) {
         passwordController.text = value!;
       },
-      validator: (value){
+      // Change background color of the text field
+      validator: (value) {
         RegExp regexp = RegExp(r'^.{6,}$');
-        if(value!.isEmpty){
+        if (value!.isEmpty) {
           return ("Please enter your password");
         }
-        if(!regexp.hasMatch(value)){
+        if (!regexp.hasMatch(value)) {
           return ("Minimum 6 character password required.");
         }
         return null;
@@ -88,25 +83,26 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final loginButton = TextButton(
       style: TextButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    primary: Colors.white,
-                    backgroundColor: Colors.green,
-                    textStyle: const TextStyle(fontSize: 20,),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    )
-      ),
-      onPressed: () { logIn(emailController.text, passwordController.text); },
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+          textStyle: const TextStyle(
+            fontSize: 20,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          )),
+      onPressed: () {
+        logIn(emailController.text, passwordController.text);
+      },
       child: const Text("Login"),
-      );
+    );
 
     //Return the email and password TextFields, plus the Login Button in a Scaffold
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         body: Center(
           child: SingleChildScrollView(
             child: Container(
-              color: Colors.white,
+              color: const Color.fromARGB(255, 255, 255, 255),
               padding: const EdgeInsets.all(45),
               child: Form(
                 key: _formKey,
@@ -122,11 +118,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(
                       height: 45,
-                    ), 
-                    emailField, 
+                    ),
+                    emailField,
                     const SizedBox(
                       height: 10,
-                    ),passwordField, 
+                    ),
+                    passwordField,
                     const SizedBox(
                       height: 12,
                     ),
@@ -136,20 +133,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         const Text("Don't have an account?"),
                         TextButton(
-                          onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context) => const RegistrationScreen()));},
-                          child: const Text("Sign Up"),
-                          style: TextButton.styleFrom(
-                            splashFactory: NoSplash.splashFactory,
-                            enableFeedback: true,
-                            primary: Colors.green,
-                            padding: const EdgeInsets.all(0),
-                            textStyle: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            )
-                          )
-                        )
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const RegistrationScreen()));
+                            },
+                            child: const Text("Sign Up"),
+                            style: TextButton.styleFrom(
+                                splashFactory: NoSplash.splashFactory,
+                                enableFeedback: true,
+                                primary: const Color.fromRGBO(174, 204, 242, 1),
+                                padding: const EdgeInsets.all(0),
+                                textStyle: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )))
                       ],
-                    )],
+                    )
+                  ],
                 ),
               ),
             ),
@@ -158,15 +160,18 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   //login function - firebase
-  void logIn(String email, String password) async{
-    if(_formKey.currentState!.validate()){
-      await _auth.signInWithEmailAndPassword(email: email, password: password)
-        .then((uid) => {
-          Fluttertoast.showToast(msg: "Successfully logged in!"),
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomeScreen()))
-        }).catchError((e) {
-          Fluttertoast.showToast(msg: e!.message);
-        });
+  void logIn(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) => {
+                Fluttertoast.showToast(msg: "Successfully logged in!"),
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const HomeScreen()))
+              })
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
     }
   }
 }

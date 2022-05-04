@@ -76,7 +76,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       validator: (value) {
         RegExp regexp = RegExp(r'^.{3,}$');
         if (value!.isEmpty) {
-          return ("Please enter First Name");
+          return ("Please enter your First Name");
         }
         if (!regexp.hasMatch(value)) {
           return ("Minimum 3 characters required");
@@ -105,7 +105,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           )),
       validator: (value) {
         if (value!.isEmpty) {
-          return ("Please enter your email");
+          return ("Please enter your Email");
         }
         // RegExp for Email Text Validation - not necessary but useful
         // if(!RegExp("^a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value )){
@@ -173,8 +173,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final registrationButton = TextButton(
       style: TextButton.styleFrom(
           padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-          primary: Colors.white,
-          backgroundColor: Colors.green,
+          primary: const Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: const Color.fromRGBO(174, 204, 242, 1),
           textStyle: const TextStyle(
             fontSize: 20,
           ),
@@ -190,7 +190,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     const double _boxHeight =
         10; //Box Height for SizedBox inbetween the widgets in Scaffold
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(1, 38, 38, 38),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -199,13 +199,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            color: Colors.green,
+            color: const Color.fromARGB(1, 38, 38, 38),
           ),
         ),
         body: Center(
           child: SingleChildScrollView(
             child: Container(
-              color: Colors.white,
+              color: const Color.fromARGB(1, 38, 38, 38),
               padding: const EdgeInsets.all(45),
               child: Form(
                 key: _formKey,
